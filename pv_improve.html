@@ -44,7 +44,7 @@ img{max-width:100%;display:block;}
 .case-header{background:linear-gradient(135deg,#f8fbff,#eef5ff);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e8ecf0;}
 .case-header h4{font-size:15px;color:#003366;font-weight:bold;}
 .case-header span{font-size:11px;background:#E8F4FD;color:#0066CC;padding:3px 8px;border-radius:3px;}
-.case-img{width:100%;height:auto;display:block;}
+.case-img{width:100%;height:auto;display:block;border-radius:0 0 6px 6px;max-height:420px;object-fit:cover;}
 .form-group{margin-bottom:14px;}
 .form-group label{display:block;font-size:13px;color:#555;font-weight:bold;margin-bottom:6px;}
 .form-input{width:100%;padding:10px 12px;border:1px solid #dce6f0;border-radius:8px;font-size:14px;color:#333;outline:none;background:#fff;-webkit-appearance:none;}
@@ -68,15 +68,39 @@ img{max-width:100%;display:block;}
 .img-placeholder p{margin:0;font-size:13px;color:#999;text-align:center;line-height:1.6;}
 .img-placeholder code{font-size:11px;color:#bbb;background:#eee;padding:2px 6px;border-radius:3px;margin-top:4px;display:inline-block;}
 .label-icon{display:inline-flex;align-items:center;margin-right:3px;vertical-align:middle;}
-.banner-carousel{position:relative;width:100%;height:220px;overflow:hidden;background:#1a2a4a;}
+.banner-carousel{position:relative;width:100%;height:200px;overflow:hidden;background:#1a2a4a;}
 .banner-track{display:flex;width:300%;height:100%;transition:transform .6s cubic-bezier(.25,.46,.45,.94);}
 .banner-slide{width:33.333%;height:100%;flex-shrink:0;position:relative;}
-.banner-slide img{width:100%;height:100%;object-fit:cover;display:block;}
+.banner-slide img{width:100%;height:100%;object-fit:cover;display:block;object-position:center;}
 .banner-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,51,102,0.92),transparent);padding:22px 16px 14px;z-index:2;pointer-events:none;}
-.banner-overlay-fixed{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,51,102,0.88),transparent);padding:22px 16px 16px;z-index:4;pointer-events:none;}
+.banner-overlay-fixed{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,51,102,0.88),transparent);padding:18px 16px 14px;z-index:4;pointer-events:none;}
 .banner-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:6px;pointer-events:auto;}
 .banner-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);border:1.5px solid rgba(255,255,255,0.7);transition:all .3s ease;cursor:pointer;padding:0;}
 .banner-dot.active{background:#fff;border-color:#fff;transform:scale(1.15);}
+
+@media(min-width:600px){
+.banner-carousel{height:260px;}
+.case-img{max-height:520px;}
+.banner-overlay-fixed{padding:26px 20px 18px;}
+.banner-overlay-fixed p:nth-child(2){font-size:22px;}
+}
+@media(min-width:768px){
+body{font-size:16px;max-width:720px;margin:0 auto;background:#f0f2f5;box-shadow:0 0 40px rgba(0,0,0,0.06);}
+.banner-carousel{height:320px;}
+.case-img{max-height:640px;}
+.card,.case-card,.highlight-box{margin-left:24px;margin-right:24px;}
+.section-title{margin:28px 24px 16px;}
+.tab-item{padding:14px 8px;font-size:14px;}
+.tab-text{font-size:13px;}
+}
+@media(min-width:1024px){
+body{max-width:960px;}
+.banner-carousel{height:400px;}
+.case-img{max-height:800px;}
+.card,.case-card,.highlight-box{margin-left:32px;margin-right:32px;}
+.section-title{margin:30px 32px 18px;}
+.banner-overlay-fixed p:nth-child(2){font-size:26px;}
+}
 </style>
 </head>
 <body>
@@ -113,7 +137,7 @@ img{max-width:100%;display:block;}
 <div class="banner-carousel" id="bannerCarousel">
 <div class="banner-track" id="bannerTrack">
 <div class="banner-slide"><img src="https://wechat-pic-lingtan.oss-cn-beijing.aliyuncs.com/weichatpic/pv-inprove/1111111.png" alt="光伏纳米涂层增发方案1" onerror="this.outerHTML='<div style=\'width:100%;height:100%;background:#1a2a4a;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.3);font-size:14px;\'>Banner 1 加载中...</div>'" /></div>
-<div class="banner-slide"><img src="https://wechat-pic-lingtan.oss-cn-beijing.aliyuncs.com/weichatpic/pv-inprove/11112222.png" alt="光伏纳米涂层增发方案2" onerror="this.outerHTML='<div style=\'width:100%;height:100%;background:#1a2a4a;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.3);font-size:14px;\'>Banner 2 加载中...</div>'" /></div>
+<div class="banner-slide"><img src="https://wechat-pic-lingtan.oss-cn-beijing.aliyuncs.com/weichatpic/pv-inprove/111122222.png" alt="光伏纳米涂层增发方案2" onerror="this.outerHTML='<div style=\'width:100%;height:100%;background:#1a2a4a;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.3);font-size:14px;\'>Banner 2 加载中...</div>'" /></div>
 <div class="banner-slide"><img src="https://wechat-pic-lingtan.oss-cn-beijing.aliyuncs.com/weichatpic/pv-inprove/11113333.png" alt="光伏纳米涂层增发方案3" onerror="this.outerHTML='<div style=\'width:100%;height:100%;background:#1a2a4a;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.3);font-size:14px;\'>Banner 3 加载中...</div>'" /></div>
 </div>
 <div class="banner-overlay-fixed">
