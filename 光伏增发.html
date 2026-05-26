@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>光伏增发 | 浙江零碳电力</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#f5f6fa;color:#333;line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;display:block;}
+.tab-bar{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #e8ecf0;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-item{flex-shrink:0;padding:14px 18px;font-size:14px;color:#888;font-weight:500;text-align:center;cursor:pointer;border-bottom:2px solid transparent;transition:all .25s ease;white-space:nowrap;}
+.tab-item.active{color:#0066CC;border-bottom-color:#0066CC;font-weight:bold;background:#f0f6ff;}
+.tab-panel{display:none;padding-bottom:30px;}
+.tab-panel.active{display:block;}
+.section-title{display:flex;align-items:center;margin:22px 16px 14px;}
+.section-title::before{content:'';width:4px;height:20px;background:linear-gradient(to bottom,#0066CC,#00CC88);border-radius:2px;margin-right:10px;flex-shrink:0;}
+.section-title span{font-size:17px;font-weight:bold;color:#003366;}
+.card{background:#fff;border-radius:10px;margin:0 16px 12px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.04);}
+.card-body{padding:16px;}
+.highlight-box{background:linear-gradient(135deg,#003366,#005588);border-radius:10px;color:#fff;padding:20px 16px;margin:0 16px 16px;}
+.data-row{display:flex;justify-content:space-around;text-align:center;padding:12px 0;}
+.data-col p:first-child{font-size:24px;font-weight:bold;color:#0066CC;}
+.data-col p:last-child{font-size:11px;color:#999;margin-top:4px;}
+.tag{display:inline-block;background:linear-gradient(135deg,#FF9900,#FFB84D);color:#fff;font-size:11px;padding:2px 8px;border-radius:3px;margin-right:6px;vertical-align:middle;}
+.tag-blue{background:linear-gradient(135deg,#0066CC,#3399FF);}
+.tag-green{background:linear-gradient(135deg,#00AA66,#00DD88);}
+.compare-table{width:100%;border-collapse:collapse;font-size:13px;}
+.compare-table th{background:#f0f6ff;padding:10px 6px;color:#003366;font-weight:bold;text-align:center;}
+.compare-table td{padding:10px 6px;text-align:center;border-bottom:1px solid #f0f0f0;color:#555;}
+.compare-table tr:last-child td{border-bottom:none;}
+.compare-table .good{color:#00AA66;font-weight:bold;}
+.compare-table .bad{color:#CC4444;}
+.case-card{background:#fff;border-radius:10px;margin:0 16px 12px;overflow:hidden;border-left:4px solid #0066CC;box-shadow:0 1px 6px rgba(0,0,0,0.04);}
+.case-header{background:linear-gradient(135deg,#f8fbff,#eef5ff);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e8ecf0;}
+.case-header h4{font-size:15px;color:#003366;font-weight:bold;}
+.case-header span{font-size:11px;background:#E8F4FD;color:#0066CC;padding:3px 8px;border-radius:3px;}
+.form-group{margin-bottom:14px;}
+.form-group label{display:block;font-size:13px;color:#555;font-weight:bold;margin-bottom:6px;}
+.form-input{width:100%;padding:10px 12px;border:1px solid #dce6f0;border-radius:8px;font-size:14px;color:#333;outline:none;background:#fff;-webkit-appearance:none;}
+.form-input:focus{border-color:#0066CC;box-shadow:0 0 0 3px rgba(0,102,204,0.08);}
+.form-select{appearance:-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%23999' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;}
+.btn-primary{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#0066CC,#0099FF);color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:bold;text-align:center;letter-spacing:2px;cursor:pointer;}
+.btn-primary:active{opacity:.85;}
+.result-box{background:#f0f8ff;border:1px solid #d0e6ff;border-radius:10px;padding:20px 16px;margin-top:16px;display:none;}
+.result-box.show{display:block;}
+.result-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #d0e6ff;}
+.result-row:last-child{border-bottom:none;}
+.result-label{font-size:13px;color:#666;}
+.result-value{font-size:15px;font-weight:bold;color:#0066CC;}
+.result-highlight{font-size:20px!important;color:#FF6600!important}
+.flow-step{display:flex;flex-direction:column;gap:0;position:relative;padding-left:28px;}
+.flow-step::before{content:'';position:absolute;left:10px;top:8px;width:2px;height:calc(100% - 8px);background:#d0e6ff;}
+.flow-step:last-child::before{display:none;}
+.flow-dot{position:absolute;left:4px;top:6px;width:14px;height:14px;background:linear-gradient(135deg,#0066CC,#00CC88);border-radius:50%;z-index:1;}
+.flow-content{background:#fff;border-radius:8px;padding:12px 14px;border:1px solid #e8ecf0;font-size:13px;color:#555;line-height:1.6;}
+</style>
+</head>
+<body>
+
+<!-- ====== 顶部Banner ====== -->
+<section style="position:relative;overflow:hidden;">
+<img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Photovoltaic%20solar%20panels%20with%20nano%20coating%20technology%20being%20applied%2C%20worker%20spraying%20transparent%20coating%20on%20solar%20panel%20surface%2C%20bright%20sunlight%2C%20professional%20industrial%20photography%2C%20clean%20modern%20aesthetic&image_size=landscape_16_9" style="width:100%;display:block;" alt="光伏纳米涂层" />
+<section style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,51,102,0.9),transparent);padding:26px 18px 18px;">
+<p style="margin:0;font-size:11px;color:rgba(255,255,255,0.65);letter-spacing:3px;">PHOTOVOLTAIC POWER BOOST</p>
+<p style="margin:4px 0 0;font-size:20px;font-weight:bold;color:#fff;letter-spacing:1px;">光伏纳米涂层 · 增发业务</p>
+<p style="margin:6px 0 0;font-size:12px;color:rgba(255,255,255,0.75);">投资方零成本投入 | 增加光伏电站发电收益</p>
+</section>
+</section>
+
+<!-- ====== Tab导航栏 ====== -->
+<nav class="tab-bar" id="tabBar">
+<div class="tab-item active" onclick="switchTab(0)">业务简介</div>
+<div class="tab-item" onclick="switchTab(1)">项目案例</div>
+<div class="tab-item" onclick="switchTab(2)">加盟合作</div>
+<div class="tab-item" onclick="switchTab(3)">测算工具</div>
+</nav>
+
+<!-- ==================== Tab1: 业务简介 ==================== -->
+<section class="tab-panel active" id="panel0">
+
+<!-- 痛点分析 -->
+<div class="section-title"><span>存量光伏电站的三大痛点</span></div>
+
+<div class="card" style="margin-bottom:12px;">
+<div class="card-body" style="padding:14px;">
+<div style="display:flex;align-items:center;margin-bottom:10px;">
+<span class="tag">痛点一</span><strong style="font-size:15px;">组件自然老化，发电效率逐年降低</strong>
+</div>
+<p style="margin:0;font-size:13px;color:#666;line-height:1.8;">新面板自带金刚膜短期保护，但随金刚膜脱落损坏，光伏面板逐渐老化，影响使用寿命和发电效率。</p>
+</div>
+</div>
+
+<div class="card" style="margin-bottom:12px;">
+<div class="card-body" style="padding:14px;">
+<div style="display:flex;align-items:center;margin-bottom:10px;">
+<span class="tag">痛点二</span><strong style="font-size:15px;">环境污染严重，透光率持续下降</strong>
+</div>
+<p style="margin:0;font-size:13px;color:#666;line-height:1.8;">灰尘、鸟粪、油污覆盖导致透光率下降；玻璃粗糙形成漫反射降低发电效率；热斑效应使组件从发电变成耗电。</p>
+</div>
+</div>
+
+<div class="card" style="margin-bottom:12px;">
+<div class="card-body" style="padding:14px;">
+<div style="display:flex;align-items:center;margin-bottom:10px;">
+<span class="tag">痛点三</span><strong style="font-size:15px;">清洗方式低效，成本居高不下</strong>
+</div>
+<p style="margin:0;font-size:13px;color:#666;line-height:1.8;">人工清洗成本高、耗水多、难全面覆盖；机器人清洗投入大、故障率高。高频次清洗还会加速增透涂层破坏。</p>
+</div>
+</div>
+
+<!-- 解决方案 -->
+<div class="highlight-box">
+<p style="margin:0 0 12px;font-size:17px;font-weight:bold;text-align:center;">光伏电站增发解决方案</p>
+<p style="margin:0 0 16px;font-size:13px;text-align:center;color:rgba(255,255,255,0.75);">光伏组件精洗 + SiO₂分子增透膜 · 一站式增发服务</p>
+<div style="display:flex;justify-content:space-around;text-align:center;">
+<div>
+<p style="margin:0;font-size:28px;font-weight:bold;color:#00E6A0;">零</p>
+<p style="margin:4px 0 0;font-size:12px;color:rgba(255,255,255,0.7);">投资方<br/>前期投入</p>
+</div>
+<div style="width:1px;background:rgba(255,255,255,0.2);"></div>
+<div>
+<p style="margin:0;font-size:28px;font-weight:bold;color:#00E6A0;">↑</p>
+<p style="margin:4px 0 0;font-size:12px;color:rgba(255,255,255,0.7);">发电量<br/>显著提升</p>
+</div>
+<div style="width:1px;background:rgba(255,255,255,0.2);"></div>
+<div>
+<p style="margin:0;font-size:28px;font-weight:bold;color:#00E6A0;">全包</p>
+<p style="margin:4px 0 0;font-size:12px;color:rgba(255,255,255,0.7);">材料施工<br/>运维维护</p>
+</div>
+</div>
+</div>
+
+<!-- 核心产品 -->
+<div class="section-title"><span>核心产品：SiO₂ 分子增透膜</span></div>
+
+<div class="card">
+<div class="card-body">
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+<span class="tag tag-blue">提高透光率</span>
+<span class="tag tag-blue">抑菌自清洁</span>
+<span class="tag tag-blue">耐腐蚀性好</span>
+<span class="tag tag-green">绿色无残留</span>
+<span class="tag green">荷叶疏水效应</span>
+</div>
+<p style="margin:0 0 12px;font-size:13px;color:#555;line-height:1.9;">
+采用<strong style="color:#0066CC;">分子级SiO₂材料</strong>涂覆于光伏玻璃表面，形成折射率较低的薄膜层，通过相消性干涉消除反射光，<strong style="color:#0066CC;">大幅提升光的透过率</strong>。同时增强光伏玻璃疏水性，水滴滚动时带走灰尘污染物，实现<strong style="color:#0066CC;">自清洁效果</strong>。
+</p>
+<p style="margin:0;font-size:13px;color:#555;line-height:1.9;">
+具有高化学稳定性和耐腐蚀特性，隔绝灰尘及油污，防止鸟粪腐化氧化，延长光伏面板使用寿命。<strong style="color:#0066CC;">绿色高效、无残留、无色、无刺激味道、无二次污染。</strong>
+</p>
+</div>
+</div>
+
+<!-- 竞品对比 -->
+<div class="section-title"><span>增透膜竞品对比</span></div>
+<div class="card" style="overflow-x:auto;">
+<table class="compare-table">
+<tr>
+<th>对比项</th>
+<th>A公司（钛系）</th>
+<th>B公司（氟系）</th>
+<th>C公司（陶瓷）</th>
+<th><strong style="color:#0066CC;">我们（硅系）</strong></th>
+</tr>
+<tr>
+<td style="text-align:left;font-weight:bold;">增透+自洁</td>
+<td class="bad">不增透</td>
+<td class="bad">不自洁</td>
+<td class="bad">不增透</td>
+<td class="good">✓ 增透+自洁</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight:bold;">抑菌功能</td>
+<td class="bad">不抑菌</td>
+<td class="bad">不抑菌</td>
+<td class="bad">需催化</td>
+<td class="good">✓ 天然抑菌</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight:bold;">耐候性</td>
+<td class="bad">不耐侯</td>
+<td class="good">较好</td>
+<td class="good">较好</td>
+<td class="good">✓ 长期稳定</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight:bold;">成本</td>
+<td class="bad">较高</td>
+<td class="bad">高</td>
+<td class="good">适中</td>
+<td class="good">✓ 性价比最优</td>
+</tr>
+</table>
+</div>
+
+<!-- 增发计算方法 -->
+<div class="section-title"><span>增发效果如何测算？</span></div>
+<div class="card">
+<div class="card-body">
+<p style="margin:0 0 10px;font-size:13px;color:#555;line-height:1.8;">
+基于<strong style="color:#0066CC;">近3年发电量平均值</strong>作为基准线，对比处理前后各季度实际发电数据：
+</p>
+<div style="background:#f7f9fc;border-radius:8px;padding:14px;margin-top:10px;">
+<p style="margin:0;font-size:13px;color:#0066CC;font-weight:bold;margin-bottom:8px;">📊 计算公式</p>
+<p style="margin:0;font-size:13px;color:#555;line-height:1.8;">
+增发电量 = 处理后季度发电量 - 近3年同期平均发电量<br/>
+增发收益 = 增发电量 × 当地燃煤标杆电价（元/kWh）
+</p>
+</div>
+<p style="margin:12px 0 0;font-size:12px;color:#999;text-align:center;">💡 切换到「测算工具」Tab，输入参数即可自动计算预估收益</p>
+</div>
+</div>
+
+</section>
+
+<!-- ==================== Tab2: 项目案例 ==================== -->
+<section class="tab-panel" id="panel1">
+
+<div class="section-title"><span>已落地项目案例</span></div>
+<p style="margin:0 16px 16px;font-size:13px;color:#888;">以下均为真实项目案例，未经任何图片处理</p>
+
+<!-- 案例1 -->
+<div class="case-card">
+<div class="case-header">
+<h4>杭州临安 · 华育教育光伏电站</h4>
+<span>教育行业</span>
+</div>
+<div class="card-body">
+<p style="margin:0;font-size:13px;color:#555;line-height:1.7;">教育园区屋顶分布式光伏电站增发项目，通过纳米涂层技术实现发电量显著提升。</p>
+<div class="data-row" style="margin-top:12px;padding-top:12px;border-top:1px dashed #e8ecf0;">
+<div class="data-col"><p>已完成</p><p>交付验收</p></div>
+<div class="data-col"><p>持续</p><p>增发稳定</p></div>
+</div>
+</div>
+</div>
+
+<!-- 案例2 -->
+<div class="case-card">
+<div class="case-header">
+<h4>宁波天启 · 顺达光伏电站</h4>
+<span>工商业</span>
+</div>
+<div class="card-body">
+<p style="margin:0;font-size:13px;color:#555;line-height:1.7;">宁波地区工商业光伏电站增发改造项目，经精洗+纳米涂层处理后，发电效率明显改善。</p>
+<div class="data-row" style="margin-top:12px;padding-top:12px;border-top:1px dashed #e8ecf0;">
+<div class="data-col"><p>已投运</p><p>运行良好</p></div>
+<div class="data-col"><p>EMC模式</p><p>收益分成</p></div>
+</div>
+</div>
+</div>
+
+<!-- 案例3 -->
+<div class="case-card">
+<div class="case-header">
+<h4>皖能集团 · 含山褒禅山光伏电站</h4>
+<span>国企/能源集团</span>
+</div>
+<div class="card-body">
+<p style="margin:0;font-size:13px;color:#555;line-height:1.7;">安徽省大型地面光伏电站增发项目，与皖能集团深度合作，为存量电站提供增值服务。</p>
+<div class="data-row" style="margin-top:12px;padding-top:12px;border-top:1px dashed #e8ecf0;">
+<div class="data-col"><p>大型地面站</p><p>规模化应用</p></div>
+<div class="data-col"><p>国企合作</p><p>品质验证</p></div>
+</div>
+</div>
+</div>
+
+<!-- 案例4：带详细数据 -->
+<div class="case-card" style="border-left-color:#00AA66;">
+<div class="case-header">
+<h4>中电建新能源 · 桐乡洲渔光伏电厂</h4>
+<span>央企 · 渔光互补</span>
+</div>
+<div class="card-body">
+<p style="margin:0;font-size:13px;color:#555;line-height:1.7;margin-bottom:12px;">渔光互补型光伏电站增发项目，2024年一季度实测数据显示增发效果显著：</p>
+<div style="background:#f0faf5;border-radius:8px;padding:12px;overflow-x:auto;">
+<table style="width:100%;font-size:12px;border-collapse:collapse;">
+<tr style="background:#e8f5ee;">
+<th style="padding:6px 4px;color:#0066CC;">季度</th>
+<th style="padding:6px 4px;color:#0066CC;">Q1</th>
+<th style="padding:6px 4px;color:#0066CC;">Q2</th>
+<th style="padding:6px 4px;color:#0066CC;">Q3</th>
+<th style="padding:6px 4px;color:#0066CC;">Q4</th>
+</tr>
+<tr>
+<td style="padding:6px 4px;font-weight:bold;color:#555;">历史均值(kWh)</td>
+<td>2,645,466</td><td>4,432,244</td><td>5,293,207</td><td>2,683,773</td>
+</tr>
+<tr style="background:#fffbf0;">
+<td style="padding:6px 4px;font-weight:bold;color:#FF6600;">处理后(kWh)</td>
+<td style="color:#FF6600;font-weight:bold;">2,675,653</td>
+<td style="color:#FF6600;font-weight:bold;">5,137,729</td>
+<td style="color:#FF6600;font-weight:bold;">4,271,425</td>
+<td style="color:#FF6600;font-weight:bold;">3,188,684</td>
+</tr>
+<tr>
+<td style="padding:6px 4px;font-weight:bold;color:#00AA66;">差值(kWh)</td>
+<td style="color:#00AA66;font-weight:bold;">+30,187</td>
+<td style="color:#00AA66;font-weight:bold;">+705,485</td>
+<td style="color:#CC4444;">-1,021,782</td>
+<td style="color:#00AA66;font-weight:bold;">+504,911</td>
+</tr>
+</table>
+</div>
+<p style="margin:10px 0 0;font-size:13px;color:#00AA66;font-weight:bold;text-align:center;">📈 2024年一季度预计增发电量 <span style="font-size:18px;">274,423 kWh</span></p>
+</div>
+</div>
+
+<!-- 案例5 -->
+<div class="case-card">
+<div class="case-header">
+<h4>东方日升 · 常州金坛光伏电站</h4>
+<span>上市公司/制造</span>
+</div>
+<div class="card-body">
+<p style="margin:0;font-size:13px;color:#555;line-height:1.7;">知名光伏组件制造商东方日升旗下电站增发项目，从组件端到电站端的全链条技术认可。</p>
+<div class="data-row" style="margin-top:12px;padding-top:12px;border-top:1px dashed #e8ecf0;">
+<div class="data-col"><p>头部企业</p><p>行业标杆</p></div>
+<div class="data-col"><p>多期合作</p><p>持续服务</p></div>
+</div>
+</div>
+</div>
+
+<!-- 案例6 -->
+<div class="case-card">
+<div class="case-header">
+<h4>中电建新能源 · 天津大桥电站</h4>
+<span>央企/跨区域</span>
+</div>
+<div class="card-body">
+<p style="margin:0;font-size:13px;color:#555;line-height:1.7;">中电建新能源天津区域光伏电站增发项目，业务版图延伸至华北市场。</p>
+<div class="data-row" style="margin-top:12px;padding-top:12px;border-top:1px dashed #e8ecf0;">
+<div class="data-col"><p>跨省布局</p><p>全国可服务</p></div>
+<div class="data-col"><p>央企背书</p><p>品质保障</p></div>
+</div>
+</div>
+</div>
+
+<!-- 案例总结 -->
+<div class="highlight-box" style="margin-top:20px;">
+<p style="margin:0 0 12px;font-size:15px;font-weight:bold;text-align:center;">客户类型覆盖广泛</p>
+<div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+<span style="background:rgba(255,255,255,0.12);color:#fff;font-size:12px;padding:5px 12px;border-radius:15px;">🏫 教育机构</span>
+<span style="background:rgba(255,255,255,0.12);color:#fff;font-size:12px;padding:5px 12px;border-radius:15px;">🏭 工商业企业</span>
+<span style="background:rgba(255,255,255,0.12);color:#fff;font-size:12px;padding:5px 12px;border-radius:15px;">🏛️ 国企/央企</span>
+<span style="background:rgba(255,255,255,0.12);color:#fff;font-size:12px;padding:5px 12px;border-radius:15px;">📦 上市公司</span>
+<span style="background:rgba(255,255,255,0.12);color:#fff;font-size:12px;padding:5px 12px;border-radius:15px;">⚡ 能源集团</span>
+<span style="background:rgba(255,255,255,0.12);color:#fff;font-size:12px;padding:5px 12px;border-radius:15px;">🌾 渔光互补</span>
+</div>
+</div>
+
+</section>
+
+<!-- ==================== Tab3: 加盟合作 ==================== -->
+<section class="tab-panel" id="panel2">
+
+<div class="section-title"><span>合作模式：投资方零成本投入</span></div>
+
+<div class="highlight-box">
+<p style="margin:0 0 8px;font-size:14px;text-align:center;color:rgba(255,255,255,0.85);">
+无需投资方支付任何费用，所有材料、施工、运维成本均由我方承担
+</p>
+</div>
+
+<!-- EMC模式详解 -->
+<div class="section-title"><span>能源管理合同（EMC）模式</span></div>
+
+<div class="card">
+<div class="card-body">
+<div style="background:#FFF8F0;border-left:4px solid #FF9900;padding:12px 14px;margin-bottom:14px;border-radius:0 8px 8px 0;">
+<p style="margin:0;font-size:14px;color:#996600;font-weight:bold;">💰 核心机制：收益分成</p>
+<p style="margin:4px 0 0;font-size:13px;color:#666;">我方完成技术处理后，增发电量产生的收益按 <strong style="color:#FF6600;">3 : 7</strong> 比例分配（甲方70% / 我方30%）</p>
+</div>
+
+<div style="margin-bottom:14px;">
+<p style="margin:0 0 8px;font-size:14px;font-weight:bold;color:#003366;">✅ 投资方获得</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px;">
+<span style="background:#f0faf5;color:#00AA66;font-size:12px;padding:5px 10px;border-radius:4px;">增发收益的 70%</span>
+<span style="background:#f0faf5;color:#00AA66;font-size:12px;padding:5px 10px;border-radius:4px;">节省清洗维护费</span>
+<span style="background:#f0faf5;color:#00AA66;font-size:12px;padding:5px 10px;border-radius:4px;">延长组件寿命</span>
+<span style="background:#f0faf5;color:#00AA66;font-size:12px;padding:5px 10px;border-radius:4px;">无需前期投入</span>
+</div>
+</div>
+
+<div>
+<p style="margin:0 0 8px;font-size:14px;font-weight:bold;color:#003366;">📋 合同期限灵活可选</p>
+<div style="display:flex;gap:8px;">
+<section style="flex:1;background:#f7f9fc;border-radius:8px;padding:12px;text-align:center;">
+<p style="margin:0;font-size:22px;font-weight:bold;color:#0066CC;">6年</p>
+<p style="margin:4px 0 0;font-size:11px;color:#999;">起步期合同</p>
+</section>
+<section style="flex:1;background:#f7f9fc;border-radius:8px;padding:12px;text-align:center;border:2px solid #0066CC;">
+<p style="margin:0;font-size:22px;font-weight:bold;color:#0066CC;">10年</p>
+<p style="margin:4px 0 0;font-size:11px;color:#999;">推荐 ⭐</p>
+</section>
+<section style="flex:1;background:#f7f9fc;border-radius:8px;padding:12px;text-align:center;">
+<p style="margin:0;font-size:22px;font-weight:bold;color:#0066CC;">15年</p>
+<p style="margin:4px 0 0;font-size:11px;color:#999;">长期合作</p>
+</section>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 合作流程 -->
+<div class="section-title"><span>合作实施流程</span></div>
+<div style="padding:0 16px 16px;">
+<div class="flow-step">
+<div class="flow-dot"></div>
+<div class="flow-content"><strong>① 项目调研</strong><br/>提供平面图、一次接线图、历史电费单、历史发电量等资料</div>
+</div>
+<div class="flow-step">
+<div class="flow-dot"></div>
+<div class="flow-content"><strong>② 技术方案</strong><br/>制定定制化增发方案，出具收益测算报告</div>
+</div>
+<div class="flow-step">
+<div class="flow-dot"></div>
+<div class="flow-content"><strong>③ EMC签订</strong><br/>双方确认合作条款，签署能源管理合同</div>
+</div>
+<div class="flow-step">
+<div class="flow-dot"></div>
+<div class="flow-content"><strong>④ 项目实施</strong><br/>组件精洗 → 纳米涂层施工 → 质检验收</div>
+</div>
+<div class="flow-step">
+<div class="flow-dot"></div>
+<div class="flow-content"><strong>⑤ 项目试运行</strong><br/>监测发电数据，对比基准线验证增发效果</div>
+</div>
+<div class="flow-step">
+<div class="flow-dot"></div>
+<div class="flow-content"><strong>⑥ 收益结算</strong><br/>按季度结算增发收益分成款，长期运维跟踪</div>
+</div>
+</div>
+</div>
+
+<!-- 收益保障 -->
+<div class="section-title"><span>收益保障承诺</span></div>
+<div class="card">
+<div class="card-body">
+<div style="display:flex;flex-direction:column;gap:10px;">
+<section style="background:#f0faff;border-radius:8px;padding:12px;">
+<p style="margin:0;font-size:13px;font-weight:bold;color:#0066CC;margin-bottom:4px;">🛡️ 质量保证</p>
+<p style="margin:0;font-size:12px;color:#555;line-height:1.6;">对纳米防护涂层提供合同期等效质保期。若增电幅度下降超过50%或涂层损耗，免费重新涂抹。</p>
+</section>
+<section style="background:#fff8f0;border-radius:8px;padding:12px;">
+<p style="margin:0;font-size:13px;font-weight:bold;color:#996600;margin-bottom:4px;">⚖️ 赔偿方案</p>
+<p style="margin:0;font-size:12px;color:#555;line-height:1.6;">若首季某季度增发电量为负且超1%，欠发电量结转至下季度。连续为负则赔偿损失。</p>
+</section>
+<section style="background:#f0fff8;border-radius:8px;padding:12px;">
+<p style="margin:0;font-size:13px;font-weight:bold;color:#00AA66;margin-bottom:4px;">📊 结算方式</p>
+<p style="margin:0;font-size:12px;color:#555;line-height:1.6;">按季度分期支付分成款，我方开具6%税率增值税专用发票。</p>
+</section>
+</div>
+</div>
+</div>
+
+<!-- 直接采购备选 -->
+<div class="section-title"><span>备选：直接采购模式</span></div>
+<div class="card">
+<div class="card-body">
+<p style="margin:0 0 10px;font-size:13px;color:#555;line-height:1.8;">
+如增发效果满意，也可选择<strong style="color:#0066CC;">直接采购</strong>产品及服务：
+</p>
+<ul style="margin:0;padding-left:18px;font-size:13px;color:#555;line-height:2;">
+<li>采购费用：<strong style="color:#0066CC;">≥ 0.12 元/Wp</strong></li>
+<li>可采用增发收益抵扣销售费用的方式结算</li>
+<li>适合希望一次性买断、自主管理的客户</li>
+</ul>
+</div>
+</div>
+
+<!-- 合作咨询引导 -->
+<div style="padding:20px 16px;text-align:center;">
+<p style="margin:0 0 12px;font-size:14px;color:#666;">有意向合作？提交需求，我们将在1个工作日内联系您</p>
+<a href="#" onclick="switchTab(3);return false;" style="display:inline-block;background:linear-gradient(135deg,#0066CC,#0099FF);color:#fff;padding:12px 32px;border-radius:8px;font-size:15px;font-weight:bold;text-decoration:none;">立即咨询合作</a>
+</div>
+
+</section>
+
+<!-- ==================== Tab4: 测算工具 ==================== -->
+<section class="tab-panel" id="panel3">
+
+<div class="section-title"><span>光伏增发收益测算工具</span></div>
+<p style="margin:0 16px 16px;font-size:13px;color:#888;">输入您的电站基础参数，快速估算增发预期收益</p>
+
+<div class="card">
+<div class="card-body">
+
+<div class="form-group">
+<label>📍 电站所在省份</label>
+<select class="form-input form-select" id="province">
+<option value="">请选择省份</option>
+<option value="zhejiang">浙江省（燃煤标杆约 0.4158 元/kWh）</option>
+<option value="jiangsu">江苏省（燃煤标杆约 0.3910 元/kWh）</option>
+<option value="anhui">安徽省（燃煤标杆约 0.3828 元/kWh）</option>
+<option value="shanghai">上海市（燃煤标杆约 0.4155 元/kWh）</option>
+<option value="other">其他省份</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>☀️ 电站装机容量（kWp）</label>
+<input type="number" class="form-input" id="capacity" placeholder="例如：1000" />
+</div>
+
+<div class="form-group">
+<label>📊 近三年年均发电量（万kWh）</label>
+<input type="number" class="form-input" id="avgGeneration" placeholder="例如：95" />
+</div>
+
+<div class="form-group">
+<label>📅 电站运营年限（年）</label>
+<input type="number" class="form-input" id="operatingYears" placeholder="例如：3" />
+</div>
+
+<div class="form-group">
+<label>🏗️ 选择合作年限</label>
+<select class="form-input form-select" id="contractYears">
+<option value="">请选择合作年限</option>
+<option value="6">6年期</option>
+<option value="10" selected>10年期（推荐）</option>
+<option value="15">15年期</option>
+</select>
+</div>
+
+<button class="btn-primary" onclick="calculate()">开始测算</button>
+
+<!-- 测算结果 -->
+<div class="result-box" id="resultBox">
+<p style="margin:0 0 14px;font-size:16px;font-weight:bold;color:#003366;text-align:center;">📊 测算结果</p>
+
+<div class="result-row">
+<span class="result-label">装机容量</span>
+<span class="result-value" id="rCapacity">—</span>
+</div>
+<div class="result-row">
+<span class="result-label">预计年均增发比例</span>
+<span class="result-value" id="rBoostRate">—</span>
+</div>
+<div class="result-row">
+<span class="result-label">预计年均增发电量</span>
+<span class="result-value" id="rBoostKwh">—</span>
+</div>
+<div class="result-row">
+<span class="result-label">预计年均增发收益</span>
+<span class="result-value result-highlight" id="rRevenue">—</span>
+</div>
+<div class="result-row">
+<span class="result-label">合作期内总增发收益</span>
+<span class="result-value result-highlight" id="rTotalRevenue">—</span>
+</div>
+<div class="result-row">
+<span class="result-label">贵方可获收益（70%）</span>
+<span class="result-value result-highlight" id="rClientShare">—</span>
+</div>
+
+<div style="margin-top:14px;padding:12px;background:#FFF8F0;border-radius:8px;text-align:center;">
+<p style="margin:0;font-size:12px;color:#996600;line-height:1.6;">
+* 以上测算基于行业平均增发比例（5%~12%）估算<br/>
+具体数值以现场调研后实测数据为准
+</p>
+</div>
+
+<div style="margin-top:14px;text-align:center;">
+<p style="margin:0 0 8px;font-size:13px;color:#666;">测算结果满意？获取精准方案</p>
+<a href="#" onclick="switchTab(2);return false;" style="display:inline-block;background:linear-gradient(135deg,#FF9900,#FFB84D);color:#fff;padding:10px 28px;border-radius:8px;font-size:14px;font-weight:bold;text-decoration:none;">申请免费上门评估</a>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- 测算说明 -->
+<div class="section-title"><span>测算依据说明</span></div>
+<div class="card">
+<div class="card-body">
+<p style="margin:0;font-size:13px;color:#555;line-height:1.9;">
+本测算工具基于<strong style="color:#0066CC;">已落地项目的实际增发数据</strong>进行估算：
+</p>
+<ul style="margin:10px 0 0;padding-left:18px;font-size:13px;color:#555;line-height:2;">
+<li>增发比例范围：<strong style="color:#0066CC;">5% ~ 12%</strong>（取决于电站现状、环境条件、组件型号）</li>
+<li>参考电价：各省燃煤标杆上网电价（实时更新）</li>
+<li>收益分成：按 EMC 模式 3:7 比例分配</li>
+<li>精确数据需现场检测后以实测值为准</li>
+</ul>
+</div>
+</div>
+
+</section>
+
+<!-- ====== 底部 ====== -->
+<footer style="padding:20px 16px;background:#003366;text-align:center;">
+<p style="margin:0 0 6px;font-size:13px;color:rgba(255,255,255,0.7);">浙江零碳电力技术有限公司</p>
+<p style="margin:0;font-size:11px;color:rgba(255,255,255,0.35);">光伏纳米涂层 · 让每一缕阳光都转化为收益 © 2021-2026</p>
+</footer>
+
+<script>
+function switchTab(index) {
+var tabs = document.querySelectorAll('.tab-item');
+var panels = document.querySelectorAll('.tab-panel');
+tabs.forEach(function(t) { t.classList.remove('active'); });
+panels.forEach(function(p) { p.classList.remove('active'); });
+tabs[index].classList.add('active');
+panels[index].classList.add('active');
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function calculate() {
+var capacity = parseFloat(document.getElementById('capacity').value);
+var avgGen = parseFloat(document.getElementById('avgGeneration').value);
+var years = parseInt(document.getElementById('contractYears').value);
+var province = document.getElementById('province').value;
+
+if (!capacity || !avgGen || !years || !province) {
+alert('请完整填写所有参数后再进行测算');
+return;
+}
+
+var priceMap = { zhejiang: 0.4158, jiangsu: 0.3910, anhui: 0.3828, shanghai: 0.4155, other: 0.4000 };
+var price = priceMap[province] || 0.40;
+var boostRate = (years >= 10 ? 0.08 : 0.06);
+var annualBoost = avgGen * 10000 * boostRate;
+var annualRevenue = annualBoost * price;
+var totalRevenue = annualRevenue * years;
+var clientShare = totalRevenue * 0.7;
+
+document.getElementById('rCapacity').textContent = capacity.toLocaleString() + ' kWp';
+document.getElementById('rBoostRate').textContent = (boostRate * 100).toFixed(1) + '%';
+document.getElementById('rBoostKwh').textContent = Math.round(annualBoost).toLocaleString() + ' kWh';
+document.getElementById('rRevenue').textContent = '¥ ' + Math.round(annualRevenue).toLocaleString();
+document.getElementById('rTotalRevenue').textContent = '¥ ' + Math.round(totalRevenue).toLocaleString();
+document.getElementById('rClientShare').textContent = '¥ ' + Math.round(clientShare).toLocaleString();
+
+document.getElementById('resultBox').classList.add('show');
+document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
+
+</body>
+</html>
