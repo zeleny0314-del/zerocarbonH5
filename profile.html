@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>公司简介 | 浙江零碳电力技术有限公司</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:#1f2937;background:#fff;line-height:1.6;font-size:15px;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+:root{
+--primary:#0d9488;--primary-dark:#0f766e;--primary-light:#14b8a6;
+--accent:#06b6d4;--accent-dark:#0891b2;
+--emerald:#059669;
+--section-bg:#f0fdfa;--text:#1f2937;--text-secondary:#6b7280;
+--border:#e5e7eb;--white:#ffffff;
+--shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 16px rgba(0,0,0,.08);
+--shadow-lg:0 12px 40px rgba(0,0,0,.12);--shadow-xl:0 20px 60px rgba(0,0,0,.15);
+--radius:16px;--radius-sm:12px;--radius-full:9999px;
+}
+.gradient-text{background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-divider{width:60px;height:4px;border-radius:2px;margin:0 auto;background:linear-gradient(90deg,var(--primary),var(--accent))}
+
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 20px rgba(13,148,136,.3)}50%{box-shadow:0 0 40px rgba(13,148,136,.6)}}
+.animate-on-scroll{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.animate-on-scroll.visible{opacity:1;transform:translateY(0)}
+
+.svg-icon{display:inline-block;width:1em;height:1em;vertical-align:-.15em;fill:currentColor;flex-shrink:0;overflow:visible}
+.svg-icon-lg{width:1.5em;height:1.5em}
+.svg-icon-xl{width:2em;height:2em}
+
+.hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,#0f766e 0%,#0d9488 40%,#0891b2 70%,#06b6d4 100%)}
+.hero-canvas{position:absolute;inset:0;z-index:0}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at 60% 80%,rgba(255,255,255,.08) 0%,transparent 55%),linear-gradient(180deg,rgba(15,118,110,.25) 0%,rgba(6,182,212,.15) 100%)}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:680px}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.15);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius-full);padding:8px 22px;margin-bottom:24px;animation:fadeInUp .8s ease both}
+.hero-badge span{color:rgba(255,255,255,.92);font-size:12px;font-weight:500;letter-spacing:2.5px}
+.hero-title{font-size:clamp(2rem,6vw,3.6rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:16px;animation:fadeInUp 1s ease .2s both}
+.hero-title .accent{color:#a5f3fc}
+.hero-sub{font-size:clamp(.9rem,2.2vw,1.15rem);color:rgba(255,255,255,.82);font-weight:300;line-height:1.75;margin-bottom:32px;animation:fadeInUp 1s ease .4s both}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeInUp 1s ease .65s both}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--primary-dark);font-weight:600;padding:14px 30px;border-radius:var(--radius-full);box-shadow:var(--shadow-lg);font-size:14px;transition:all .3s}
+.btn-primary:active{transform:scale(.96)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;border:2px solid rgba(255,255,255,.6);color:#fff;font-weight:600;padding:14px 30px;border-radius:var(--radius-full);font-size:14px;transition:all .3s}
+.btn-outline:active{background:rgba(255,255,255,.15)}
+.scroll-hint{position:absolute;bottom:32px;left:50%;z-index:2;animation:float 3s ease-in-out infinite;display:flex;flex-direction:column;align-items:center;gap:6px}
+.scroll-hint-inner{width:24px;height:40px;border:2px solid rgba(255,255,255,.45);border-radius:12px;display:flex;justify-content:center;padding-top:8px}
+.scroll-hint-dot{width:5px;height:10px;background:rgba(255,255,255,.7);border-radius:3px;animation:float 1.5s ease-in-out infinite}
+
+.data-section{padding:36px 16px 24px;background:#fff}
+.data-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e0f2f1;border-radius:14px;overflow:hidden}
+.data-cell{background:#fff;padding:22px 8px;text-align:center}
+.data-num{font-size:clamp(24px,5vw,34px);font-weight:800;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2}
+.data-label{font-size:11px;color:#9ca3af;margin-top:6px;letter-spacing:.5px}
+
+.section{padding:56px 16px 44px}
+.section-gray{background:var(--section-bg)}
+.section-title{text-align:center;margin-bottom:44px}
+.section-title h2{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;color:var(--text);margin-bottom:14px}
+.section-title p{color:var(--text-secondary);font-size:clamp(.88rem,2vw,1.05rem);max-width:560px;margin:0 auto;line-height:1.7}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.about-img-wrap{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-xl)}
+.about-img-wrap img{width:100%;height:auto;display:block}
+.about-float-card{position:absolute;bottom:-14px;right:-8px;background:#fff;border-radius:var(--radius-sm);box-shadow:var(--shadow-lg);padding:14px 18px;border:1px solid #ccfbf1}
+.about-float-card .num{font-size:26px;font-weight:700;color:var(--primary)}
+.about-float-card .label{font-size:11px;color:var(--text-secondary)}
+.about-text h3{font-size:clamp(1.25rem,3vw,1.7rem);font-weight:700;line-height:1.4;margin-bottom:16px}
+.about-text p{color:var(--text-secondary);line-height:1.85;margin-bottom:14px;font-size:14.5px}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.about-tag{display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,#f0fdfa,#ecfeff);color:var(--primary);font-size:12px;padding:6px 13px;border-radius:var(--radius-full);border:1px solid #99f6e4}
+
+.cat-nav{display:flex;gap:0;background:#e0f2f1;border-radius:var(--radius-full);padding:3px;margin-bottom:20px}
+.cat-btn{flex:1;padding:10px 6px;font-size:13px;color:var(--text-secondary);font-weight:600;text-align:center;border:none;background:none;border-radius:var(--radius-full);cursor:pointer;transition:all .3s}
+.cat-btn.active{background:#fff;color:var(--primary);box-shadow:var(--shadow-sm)}
+.cat-panel{display:none}
+.cat-panel.active{display:block}
+
+.service-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--border);transition:all .4s ease;margin-bottom:14px}
+.service-card:active{transform:scale(.98)}
+.service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.service-img-wrap{position:relative;height:180px;overflow:hidden}
+.service-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.service-card:hover .service-img-wrap img{transform:scale(1.06)}
+.service-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,94,89,.55),transparent)}
+.service-img-icon{position:absolute;bottom:14px;left:16px;width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff}
+.service-body{padding:18px 20px}
+.service-body h3{font-size:16px;font-weight:700;margin-bottom:8px;transition:color .3s}
+.service-card:hover .service-body h3{color:var(--primary)}
+.service-body p{font-size:13.5px;color:var(--text-secondary);line-height:1.75}
+.service-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.service-tag{font-size:11px;color:var(--primary);background:#f0fdfa;padding:3px 10px;border-radius:var(--radius-full)}
+
+.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.product-card{position:relative;background:linear-gradient(135deg,#fff,#f0fdfa);border-radius:var(--radius);padding:22px 18px;border:1px solid var(--border);transition:all .4s ease;overflow:hidden}
+.product-card:active{transform:scale(.97)}
+.product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:#99f6e4}
+.product-icon-wrap{width:48px;height:48px;border-radius:var(--radius-sm);background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;color:#fff;margin-bottom:16px;box-shadow:0 4px 12px rgba(13,148,136,.3);transition:transform .3s}
+.product-card:hover .product-icon-wrap{transform:scale(1.08)}
+.product-card h4{font-size:15px;font-weight:700;margin-bottom:8px;transition:color .3s}
+.product-card:hover h4{color:var(--primary)}
+.product-card p{font-size:12.5px;color:var(--text-secondary);line-height:1.7}
+.product-corner{position:absolute;top:0;right:0;width:64px;height:64px;background:linear-gradient(to bottom left,rgba(204,251,241,.5),transparent);border-radius:0 var(--radius) 0 0}
+
+.org-chart-wrap{overflow-x:auto;padding-bottom:16px;-webkit-overflow-scrolling:touch}
+.org-chart{min-width:640px;max-width:800px;margin:0 auto}
+.org-top{display:flex;justify-content:center;margin-bottom:0}
+.org-top-node{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border-radius:var(--radius);padding:20px 32px;text-align:center;box-shadow:var(--shadow-lg);animation:pulseGlow 3s ease-in-out infinite;min-width:240px}
+.org-top-node .tag{font-size:10px;font-weight:500;color:#a7f3d0;letter-spacing:2px;margin-bottom:4px}
+.org-top-node .name{font-size:17px;font-weight:700}
+.org-top-node .desc{font-size:11px;color:#a7f3d0;margin-top:4px}
+.org-vline{display:flex;justify-content:center}
+.org-vline .line{width:2px;height:32px;background:linear-gradient(to bottom,var(--primary-light),var(--primary))}
+.org-hline{display:flex;justify-content:center}
+.org-hline .line{height:2px;background:linear-gradient(to right,var(--primary-light),var(--primary),var(--primary-light));width:72%}
+.org-branches{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:0}
+.org-branch{display:flex;flex-direction:column;align-items:center}
+.org-branch-vline .line{width:2px;height:24px;background:#99f6e4}
+.org-branch-header{background:#fff;border-radius:var(--radius-sm);padding:12px 16px;text-align:center;width:100%;box-shadow:var(--shadow-sm);margin-bottom:10px;border:1px solid #ccfbf1}
+.org-branch-header .tag{font-size:10px;font-weight:500;color:var(--primary);margin-bottom:2px}
+.org-branch-header .name{font-size:13px;font-weight:700;color:var(--text)}
+.org-sub-vline .line{width:2px;height:16px;background:#ccfbf1}
+.org-sub-card{background:#fff;border-radius:var(--radius-sm);padding:12px 14px;box-shadow:var(--shadow-sm);border:1px solid var(--border);text-align:center;width:100%;transition:all .3s;margin-bottom:8px}
+.org-sub-card:hover{border-color:#99f6e4;box-shadow:var(--shadow-md)}
+.org-sub-card .sub-tag{display:inline-block;font-size:10px;font-weight:500;padding:2px 10px;border-radius:var(--radius-full);margin-bottom:6px}
+.org-sub-card .sub-tag-teal{background:#f0fdfa;color:var(--primary)}
+.org-sub-card .sub-tag-emerald{background:#ecfdf5;color:var(--emerald)}
+.org-sub-card .sub-name{font-size:12px;font-weight:600;color:var(--text);line-height:1.5}
+.org-sub-card .sub-desc{font-size:10px;color:#9ca3af;margin-top:4px;line-height:1.5}
+.org-biz-card{background:linear-gradient(135deg,#f0fdfa,#ecfeff);border-radius:var(--radius-sm);padding:12px 14px;border:1px solid #ccfbf1;text-align:center;width:100%;margin-bottom:8px}
+.org-biz-card .biz-tag{font-size:10px;font-weight:500;color:var(--primary);margin-bottom:6px}
+.org-biz-card .biz-item{font-size:11.5px;color:var(--text-secondary);padding:5px 0;border-top:1px solid #d1fae5}
+.org-biz-card .biz-item:first-of-type{border-top:none}
+
+.eco-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.eco-card{position:relative;background:#fff;border-radius:var(--radius);padding:32px 20px;text-align:center;border:1px solid var(--border);transition:all .4s ease;overflow:hidden}
+.eco-card:active{transform:scale(.97)}
+.eco-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:#99f6e4}
+.eco-icon-wrap{width:64px;height:64px;margin:0 auto 20px;border-radius:var(--radius);background:linear-gradient(135deg,#f0fdfa,#ecfeff);border:1px solid #ccfbf1;display:flex;align-items:center;justify-content:center;color:var(--primary);transition:transform .3s}
+.eco-card:hover .eco-icon-wrap{transform:scale(1.08)}
+.eco-card h3{font-size:16px;font-weight:700;margin-bottom:10px;transition:color .3s}
+.eco-card:hover h3{color:var(--primary)}
+.eco-card p{font-size:13px;color:var(--text-secondary);line-height:1.7}
+.eco-circle{position:absolute;top:-14px;right:-14px;width:72px;height:72px;background:linear-gradient(135deg,rgba(204,251,241,.35),transparent);border-radius:50%}
+
+.sub-section-title{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.sub-bar{width:4px;height:26px;border-radius:2px;background:linear-gradient(to bottom,var(--primary),var(--accent))}
+.sub-section-title h3{font-size:17px;font-weight:700;color:var(--text)}
+.sub-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:36px}
+.sub-card{background:#fff;border-radius:var(--radius);padding:22px;border:1px solid var(--border);transition:all .4s}
+.sub-card:hover{border-color:#99f6e4;box-shadow:var(--shadow-md)}
+.sub-card-inner{display:flex;align-items:flex-start;gap:14px}
+.sub-avatar{width:44px;height:44px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:17px;flex-shrink:0;box-shadow:0 4px 12px rgba(13,148,136,.25)}
+.sub-avatar-teal{background:linear-gradient(135deg,var(--primary),var(--accent))}
+.sub-avatar-emerald{background:linear-gradient(135deg,var(--emerald),var(--primary))}
+.sub-tag{display:inline-block;font-size:10.5px;font-weight:500;padding:3px 12px;border-radius:var(--radius-full);margin-bottom:8px}
+.sub-tag-teal{background:#f0fdfa;color:var(--primary)}
+.sub-tag-emerald{background:#ecfdf5;color:var(--emerald)}
+.sub-card h4{font-size:14px;font-weight:700;margin-bottom:6px;line-height:1.5;transition:color .3s}
+.sub-card:hover h4{color:var(--primary)}
+.sub-card p{font-size:12.5px;color:var(--text-secondary);line-height:1.6}
+
+.vision-card{background:linear-gradient(135deg,#0f766e,var(--primary),var(--accent));border-radius:var(--radius);padding:40px 24px;text-align:center;position:relative;overflow:hidden;margin:0 16px 24px}
+.vision-card::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:radial-gradient(circle,rgba(165,243,252,.15) 0%,transparent 70%);border-radius:50%}
+.vision-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:100px;height:100px;background:radial-gradient(circle,rgba(6,182,212,.12) 0%,transparent 70%);border-radius:50%}
+.vision-title{font-size:14px;color:rgba(255,255,255,.5);letter-spacing:3px;margin-bottom:14px;position:relative}
+.vision-text{font-size:15px;color:rgba(255,255,255,.88);line-height:2.2;position:relative}
+.vision-text strong{color:#a5f3fc}
+
+.qual-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:0 16px}
+.qual-cell{background:#fff;border-radius:var(--radius-sm);padding:16px 12px;text-align:center;border:1px solid #e0f2f1;box-shadow:0 1px 4px rgba(0,0,0,.03)}
+.qual-icon{width:40px;height:40px;margin:0 auto 10px;border-radius:12px;display:flex;align-items:center;justify-content:center}
+.qual-icon.teal{background:#f0fdfa;color:var(--primary)}
+.qual-icon.emerald{background:#ecfdf5;color:var(--emerald)}
+.qual-name{font-size:13px;font-weight:700;color:var(--text)}
+
+.cta{position:relative;padding:72px 0;overflow:hidden;background:linear-gradient(135deg,#0f766e,var(--primary),var(--accent))}
+.cta-deco{position:absolute;border:1px solid rgba(255,255,255,.15);border-radius:50%}
+.cta-inner{position:relative;z-index:1;text-align:center;padding:0 20px}
+.cta h2{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;color:#fff;margin-bottom:16px}
+.cta p{font-size:clamp(.9rem,2vw,1.08rem);color:rgba(255,255,255,.84);max-width:540px;margin:0 auto 32px;line-height:1.75}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-white{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--primary-dark);font-weight:600;padding:14px 30px;border-radius:var(--radius-full);box-shadow:var(--shadow-lg);font-size:14px;transition:all .3s}
+.btn-white:active{transform:scale(.96)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;border:2px solid rgba(255,255,255,.6);color:#fff;font-weight:600;padding:14px 30px;border-radius:var(--radius-full);font-size:14px;transition:all .3s}
+.btn-ghost:active{background:rgba(255,255,255,.15)}
+
+.contact-section{padding:48px 16px 36px;background:#fff}
+.contact-card{background:var(--section-bg);border-radius:var(--radius);padding:24px}
+.contact-row{display:flex;align-items:flex-start;margin-bottom:16px}
+.contact-row:last-child{margin-bottom:0}
+.contact-label{font-size:14px;color:var(--primary);font-weight:700;min-width:52px;flex-shrink:0}
+.contact-value{font-size:14px;color:#555;line-height:1.8}
+.contact-qr{margin-top:18px;text-align:center;padding-top:18px;border-top:1px dashed #99f6e4}
+.contact-qr img{width:140px;height:140px;margin:0 auto 10px;border-radius:10px;border:1px solid #e0f2f1}
+.contact-qr p{font-size:12px;color:#9ca3af}
+
+.footer{padding:28px 16px;background:#111827;text-align:center}
+.footer-slogan{font-size:13px;color:rgba(255,255,255,.55);margin-bottom:6px;letter-spacing:2px}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.28)}
+
+.qr-modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.qr-modal.show{display:flex}
+.qr-modal-content{background:#fff;border-radius:16px;padding:28px 24px 24px;width:300px;max-width:88vw;text-align:center;position:relative;animation:fadeInUp .3s ease}
+.qr-modal-close{position:absolute;top:10px;right:14px;width:28px;height:28px;border:none;background:none;font-size:20px;color:#999;cursor:pointer;line-height:28px;padding:0}
+.qr-modal-title{font-size:17px;font-weight:bold;color:var(--text);margin:0 0 4px}
+.qr-modal-subtitle{font-size:13px;color:#9ca3af;margin:0 0 18px}
+.qr-modal-img{width:200px;height:200px;margin:0 auto 16px;border-radius:8px;border:1px solid #e5e7eb;display:block}
+.qr-modal-tip{font-size:13px;color:#666;margin:0 0 4px}
+.qr-modal-tip-bold{font-size:14px;color:var(--primary);font-weight:bold;margin:0}
+
+@media(max-width:768px){
+.about-grid{grid-template-columns:1fr;gap:32px}
+.about-img-wrap{order:-1}
+.about-float-card{right:8px;bottom:-12px}
+.services-grid-col1 .service-card .service-img-wrap{height:160px}
+.product-grid{grid-template-columns:1fr 1fr}
+.org-branches{grid-template-columns:1fr;gap:20px}
+.org-hline .line{width:0}
+.eco-grid{grid-template-columns:1fr}
+.sub-grid{grid-template-columns:1fr}
+}
+@media(min-width:769px) and (max-width:1024px){
+.product-grid{grid-template-columns:repeat(2,1fr)}
+.org-branches{grid-template-columns:repeat(3,1fr)}
+}
+@media(min-width:600px){
+body{max-width:720px;margin:0 auto;background:#f0f2f5;box-shadow:0 0 40px rgba(0,0,0,.06)}
+}
+</style>
+</head>
+<body>
+
+<svg style="display:none" aria-hidden="true">
+<symbol id="icon-sun" viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></symbol>
+<symbol id="icon-lightning" viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></symbol>
+<symbol id="icon-chart" viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></symbol>
+<symbol id="icon-building" viewBox="0 0 24 24"><path d="M3.33 16H11V13H4L3.33 16M13 16H20.67L20 13H13V16M21.11 18H13V22H22L21.11 18M2 22H11V18H2.89L2 22M11 8H13V11H11V8M15.76 7.21L17.18 5.79L19.3 7.91L17.89 9.33L15.76 7.21M4.71 7.91L6.83 5.79L8.24 7.21L6.12 9.33L4.71 7.91M3 2H6V4H3V2M18 2H21V4H18V2M12 7C14.76 7 17 4.76 17 2H7C7 4.76 9.24 7 12 7Z"/></symbol>
+<symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></symbol>
+<symbol id="icon-check-circle" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></symbol>
+<symbol id="icon-wrench" viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></symbol>
+<symbol id="icon-location" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></symbol>
+<symbol id="icon-microgrid" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" stroke-width="1.5" fill="none"/></symbol>
+<symbol id="icon-battery" viewBox="0 0 24 24"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4zM11 20v-5.5H9L13 7v5.5h2L11 20z"/></symbol>
+<symbol id="icon-ev" viewBox="0 0 24 24"><path d="M18.92 2.01C18.72 1.42 18.16 1 17.5 1h-11c-.66 0-1.21.42-1.42 1.01L3 8v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1V8l-2.08-5.99zM6.5 12c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm11 0c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 7l1.5-4.5h11L19 7H5z"/><path d="M7 20h4v-2l6 3h-4v2z" fill="currentColor"/></symbol>
+<symbol id="icon-globe" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></symbol>
+<symbol id="icon-cpu" viewBox="0 0 24 24"><path d="M15 9H9v6h6V9zm-2 4h-2v-2h2v2zm8-2V9h-2V7c0-1.1-.9-2-2-2h-2V3h-2v2h-2V3H9v2H7c-1.1 0-2 .9-2 2v2H3v2h2v2H3v2h2v2c0 1.1.9 2 2 2h2v2h2v-2h2v2h2v-2h2c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2zm-4 6H7V7h10v10z"/></symbol>
+<symbol id="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></symbol>
+<symbol id="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></symbol>
+</svg>
+
+<section class="hero" id="heroSection">
+<canvas class="hero-canvas" id="heroCanvas"></canvas>
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<div class="hero-badge">
+<svg width="22" height="22" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="#fff" stroke-width="2"/><path d="M14 4L14 14L22 10" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="14" r="3" fill="#fff"/></svg>
+<span>ZERO CARBON POWER</span>
+</div>
+<h1 class="hero-title">浙江零碳电力<br><span class="accent">技术有限公司</span></h1>
+<p class="hero-sub">以分布式能源为主线，赋能智慧能源新时代<br>构建零碳未来的核心力量</p>
+<div class="hero-btns">
+<a href="#about" class="btn-primary" onclick="smoothScroll('about');return false">
+了解更多 <svg width="12" height="12" viewBox="0 0 14 14" fill="currentColor"><path d="M7 10L2 5h10L7 10z"/></svg>
+</a>
+<a href="#contact" class="btn-outline" onclick="smoothScroll('contact');return false">联系我们</a>
+</div>
+</div>
+<div class="scroll-hint">
+<div class="scroll-hint-inner"><div class="scroll-hint-dot"></div></div>
+</div>
+</section>
+
+<section class="data-section animate-on-scroll">
+<div class="data-grid">
+<div class="data-cell"><p class="data-num">2021</p><p class="data-label">成立年份</p></div>
+<div class="data-cell"><p class="data-num">6+</p><p class="data-label">核心业务板块</p></div>
+<div class="data-cell"><p class="data-num">100+</p><p class="data-label">服务项目</p></div>
+</div>
+</section>
+
+<section class="section" id="about">
+<div class="section-title animate-on-scroll">
+<h2>关于我们</h2>
+<div class="section-divider" style="margin-bottom:14px"></div>
+<p>深耕分布式能源领域，以技术创新驱动零碳未来</p>
+</div>
+<div class="about-grid">
+<div class="about-img-wrap animate-on-scroll">
+<img src="https://wechat-pic-lingtan.oss-cn-beijing.aliyuncs.com/weichatpic/homepage/12313131131.png" alt="智慧能源平台" />
+<div class="about-float-card">
+<div class="num">30+</div>
+<div class="label">核心专利与技术</div>
+</div>
+</div>
+<div class="about-text animate-on-scroll">
+<h3>以分布式能源为主线<br><span class="gradient-text">打造零碳电力生态</span></h3>
+<p>浙江零碳电力技术有限公司成立于<strong style="color:var(--primary)">2021年</strong>，总部位于<strong style="color:var(--primary)">杭州西湖区</strong>，是一家专注于分布式能源领域的高新技术企业。公司以「零碳驱动、智慧赋能」为核心理念，围绕分布式光伏、储能、微电网等核心场景，构建了覆盖「技术服务+核心产品」的完整业务体系。</p>
+<p>公司全资控股杭州泓衍绿能科技、杭州鼎弈合创科技两大研发中心，并战略投资中鑫溢嘉建设集团浙江第一分公司、中科嘉诚设计有限公司嘉兴分公司，形成了「研发—设计—施工—运维」全产业链布局。</p>
+<div class="about-tags">
+<span class="about-tag"><svg class="svg-icon" style="width:14px;height:14px"><use href="#icon-sun"></use></svg> 光伏增发</span>
+<span class="about-tag"><svg class="svg-icon" style="width:14px;height:14px"><use href="#icon-building"></use></svg> 施工总包</span>
+<span class="about-tag"><svg class="svg-icon" style="width:14px;height:14px"><use href="#icon-chart"></use></svg> 智慧能源</span>
+<span class="about-tag"><svg class="svg-icon" style="width:14px;height:14px"><use href="#icon-microgrid"></use></svg> 微电网</span>
+<span class="about-tag"><svg class="svg-icon" style="width:14px;height:14px"><use href="#icon-ev"></use></svg> V2G充电桩</span>
+<span class="about-tag"><svg class="svg-icon" style="width:14px;height:14px"><use href="#icon-battery"></use></svg> 储能EMS</span>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section section-gray" id="services">
+<div class="section-title animate-on-scroll">
+<h2>服务与产品</h2>
+<div class="section-divider" style="margin-bottom:14px"></div>
+<p>专业技术服务体系与自主研发硬核产品</p>
+</div>
+
+<div class="cat-nav">
+<button class="cat-btn active" onclick="switchCat(0)">核心服务</button>
+<button class="cat-btn" onclick="switchCat(1)">核心产品</button>
+</div>
+
+<div class="cat-panel active" id="catPanel0">
+<div class="service-card animate-on-scroll">
+<div class="service-img-wrap">
+<img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Photovoltaic%20solar%20panels%20with%20nano%20coating%20technology%2C%20close-up%20detail%20of%20blue%20anti-reflective%20coating%20on%20glass%20surface%2C%20professional%20industrial%20photography%2C%20clean%20modern%20aesthetic%2C%20sunlight%20reflection&image_size=landscape_4_3" alt="光伏纳米涂层增发" />
+<div class="service-img-overlay"></div>
+<div class="service-img-icon"><svg class="svg-icon svg-icon-lg"><use href="#icon-sun"></use></svg></div>
+</div>
+<div class="service-body">
+<h3>光伏纳米涂层提质增效</h3>
+<p>采用前沿纳米涂层技术（SiO₂分子增透膜），显著提升光伏组件透光率与发电效率，降低灰尘污渍附着，实现电站增发收益最大化。投资方零投入，EMC模式收益分成。</p>
+<div class="service-tags">
+<span class="service-tag">零投入</span><span class="service-tag">增透自洁</span><span class="service-tag">EMC模式</span>
+</div>
+</div>
+</div>
+
+<div class="service-card animate-on-scroll">
+<div class="service-img-wrap">
+<img src="https://wechat-pic-lingtan.oss-cn-beijing.aliyuncs.com/weichatpic/homepage/222111141241.png" alt="电力施工总包" />
+<div class="service-img-overlay"></div>
+<div class="service-img-icon"><svg class="svg-icon svg-icon-lg"><use href="#icon-wrench"></use></svg></div>
+</div>
+<div class="service-body">
+<h3>分布式光伏 / 储能设计与施工</h3>
+<p>具备电力工程施工总承包资质，提供分布式光伏、分布式储能EPC服务，涵盖设计、采购、施工、调试全流程交付。</p>
+<div class="service-tags">
+<span class="service-tag">EPC总包</span><span class="service-tag">施工资质</span><span class="service-tag">全流程交付</span>
+</div>
+</div>
+</div>
+
+<div class="service-card animate-on-scroll">
+<div class="service-img-wrap">
+<img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Modern%20electric%20vehicle%20charging%20station%20with%20solar%20panel%20canopy%20and%20battery%20energy%20storage%20system%2C%20integrated%20photovoltaic-storage-charging%20station%2C%20professional%20architectural%20photography%2C%20clean%20design&image_size=landscape_4_3" alt="光储充施工" />
+<div class="service-img-overlay"></div>
+<div class="service-img-icon"><svg class="svg-icon svg-icon-lg"><use href="#icon-lightning"></use></svg></div>
+</div>
+<div class="service-body">
+<h3>光储充一体化施工</h3>
+<p>光储充电站场站施工总包，从方案设计到集成调试一站式交付。涵盖光伏车棚、储能系统、充电桩的集成方案与典型案例落地。</p>
+<div class="service-tags">
+<span class="service-tag">一体化方案</span><span class="service-tag">集成调试</span><span class="service-tag">场站施工</span>
+</div>
+</div>
+</div>
+
+<div class="service-card animate-on-scroll">
+<div class="service-img-wrap">
+<img src="https://wechat-pic-lingtan.oss-cn-beijing.aliyuncs.com/weichatpic/homepage/12441412.png" alt="国网超市化采购" />
+<div class="service-img-overlay"></div>
+<div class="service-img-icon"><svg class="svg-icon svg-icon-lg"><use href="#icon-shield"></use></svg></div>
+</div>
+<div class="service-body">
+<h3>国网超市化采购</h3>
+<p>产品入围国家电网超市化采购目录，为电力系统客户提供标准化、合规化的设备与材料供应服务，保障交付品质与交付周期。</p>
+<div class="service-tags">
+<span class="service-tag">国网入围</span><span class="service-tag">标准化供应</span><span class="service-tag">品质保障</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="cat-panel" id="catPanel1">
+<div class="product-grid">
+<div class="product-card animate-on-scroll">
+<div class="product-icon-wrap"><svg class="svg-icon svg-icon-xl"><use href="#icon-chart"></use></svg></div>
+<h4>智慧能源运营平台</h4>
+<p>基于物联网与大数据技术，实现对分布式光伏、储能、充电桩等多类能源设备的统一接入、实时监控与智能调度</p>
+<div class="product-corner"></div>
+</div>
+<div class="product-card animate-on-scroll">
+<div class="product-icon-wrap"><svg class="svg-icon svg-icon-xl"><use href="#icon-microgrid"></use></svg></div>
+<h4>智慧微电网平台</h4>
+<p>面向园区、工商业微电网场景，源网荷储协同优化、孤岛/并网无缝切换、经济调度</p>
+<div class="product-corner"></div>
+</div>
+<div class="product-card animate-on-scroll">
+<div class="product-icon-wrap"><svg class="svg-icon svg-icon-xl"><use href="#icon-cpu"></use></svg></div>
+<h4>智能微网控制器</h4>
+<p>微电网的「智慧大脑」，集成功率预测、负荷预测、协调控制与保护逻辑</p>
+<div class="product-corner"></div>
+</div>
+<div class="product-card animate-on-scroll">
+<div class="product-icon-wrap"><svg class="svg-icon svg-icon-xl"><use href="#icon-battery"></use></svg></div>
+<h4>智能储能EMS控制器</h4>
+<p>支持多策略充放电管理、电池均衡管理、SOH估算与安全预警，最大化经济性与安全性</p>
+<div class="product-corner"></div>
+</div>
+<div class="product-card animate-on-scroll">
+<div class="product-icon-wrap"><svg class="svg-icon svg-icon-xl"><use href="#icon-ev"></use></svg></div>
+<h4>双向充电桩（V2G）</h4>
+<p>V2G双向能量交互，电动汽车既是移动储能单元也是电网调节资源，助力峰谷套利</p>
+<div class="product-corner"></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section section-gray" id="org">
+<div class="section-title animate-on-scroll">
+<h2>组织架构</h2>
+<div class="section-divider" style="margin-bottom:14px"></div>
+<p>以浙江零碳电力为核心，构建「研发—设计—施工」全产业链生态</p>
+</div>
+
+<div class="org-chart-wrap animate-on-scroll">
+<div class="org-chart">
+<div class="org-top">
+<div class="org-top-node">
+<div class="tag">总 公 司</div>
+<div class="name">浙江零碳电力技术有限公司</div>
+<div class="desc">分布式能源智慧解决方案提供商</div>
+</div>
+</div>
+<div class="org-vline"><div class="line"></div></div>
+<div class="org-hline"><div class="line"></div></div>
+<div class="org-branches">
+
+<div class="org-branch">
+<div class="org-branch-vline"><div class="line"></div></div>
+<div class="org-branch-header">
+<div class="tag">全资控股</div>
+<div class="name">研发中心</div>
+</div>
+<div class="org-sub-vline"><div class="line"></div></div>
+<div class="org-sub-card">
+<div class="sub-tag sub-tag-teal">研发中心</div>
+<div class="sub-name">杭州泓衍绿能科技有限公司</div>
+<div class="sub-desc">聚焦新能源核心技术研发<br/>深耕智慧能源算法与系统集成创新</div>
+</div>
+<div class="org-sub-vline"><div class="line"></div></div>
+<div class="org-sub-card">
+<div class="sub-tag sub-tag-teal">研发中心</div>
+<div class="sub-name">杭州鼎弈合创科技有限公司</div>
+<div class="sub-desc">专注微电网控制技术与<br/>储能管理系统的前沿研究</div>
+</div>
+</div>
+
+<div class="org-branch">
+<div class="org-branch-vline"><div class="line"></div></div>
+<div class="org-branch-header" style="border-color:#a5f3fc">
+<div class="tag" style="color:var(--accent-dark)">核心业务</div>
+<div class="name">服务 + 产品</div>
+</div>
+<div class="org-sub-vline"><div class="line"></div></div>
+<div class="org-biz-card">
+<div class="biz-tag">技术服务</div>
+<div class="biz-item">光伏纳米涂层提质增效</div>
+<div class="biz-item">分布式光伏 / 储能设计与施工</div>
+<div class="biz-item">光储充一体化施工</div>
+<div class="biz-item">国网超市化采购</div>
+</div>
+<div class="org-sub-vline"><div class="line"></div></div>
+<div class="org-biz-card" style="background:linear-gradient(135deg,#ecfeff,#f0fdfa);border-color:#a5f3fc">
+<div class="biz-tag" style="color:var(--accent-dark)">核心产品</div>
+<div class="biz-item">智慧能源运营平台</div>
+<div class="biz-item">智慧微电网平台</div>
+<div class="biz-item">智能微网控制器</div>
+<div class="biz-item">智能储能EMS控制器</div>
+<div class="biz-item">双向充电桩（V2G）</div>
+</div>
+</div>
+
+<div class="org-branch">
+<div class="org-branch-vline"><div class="line"></div></div>
+<div class="org-branch-header" style="border-color:#a7f3d0">
+<div class="tag" style="color:var(--emerald)">参股投资</div>
+<div class="name">生态协同</div>
+</div>
+<div class="org-sub-vline"><div class="line" style="background:#a7f3d0"></div></div>
+<div class="org-sub-card">
+<div class="sub-tag sub-tag-emerald">参股投资</div>
+<div class="sub-name">中鑫溢嘉建设集团<br/>浙江第一分公司</div>
+<div class="sub-desc">依托建设领域专业资质<br/>赋能新能源项目工程落地</div>
+</div>
+<div class="org-sub-vline"><div class="line" style="background:#a7f3d0"></div></div>
+<div class="org-sub-card">
+<div class="sub-tag sub-tag-emerald">参股投资</div>
+<div class="sub-name">中科嘉诚设计<br/>嘉兴分公司</div>
+<div class="sub-desc">提供电力工程设计咨询<br/>保障项目设计质量</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="ecosystem">
+<div class="section-title animate-on-scroll">
+<h2>服务领域</h2>
+<div class="section-divider" style="margin-bottom:14px"></div>
+<p>聚焦三大核心领域，助力能源革命与双碳目标实现</p>
+</div>
+<div class="eco-grid">
+<div class="eco-card animate-on-scroll">
+<div class="eco-icon-wrap"><svg class="svg-icon svg-icon-xl"><use href="#icon-globe"></use></svg></div>
+<h3>智慧能源</h3>
+<p>以数字化手段实现能源生产、传输、消费全环节的智能管理与优化调度，推动能源体系向清洁低碳、安全高效转型。</p>
+<div class="eco-circle"></div>
+</div>
+<div class="eco-card animate-on-scroll">
+<div class="eco-icon-wrap"><svg class="svg-icon svg-icon-xl"><use href="#icon-microgrid"></use></svg></div>
+<h3>新型微电网</h3>
+<p>构建以可再生能源为主体的分布式微电网系统，实现源网荷储协同运行，提升终端能源利用效率与供电可靠性。</p>
+<div class="eco-circle"></div>
+</div>
+<div class="eco-card animate-on-scroll">
+<div class="eco-icon-wrap"><svg class="svg-icon svg-icon-xl"><use href="#icon-lightning"></use></svg></div>
+<h3>新型电力系统</h3>
+<p>服务以新能源为主体的新型电力系统建设，通过智能化技术支撑高比例可再生能源接入与电力系统安全稳定运行。</p>
+<div class="eco-circle"></div>
+</div>
+</div>
+</section>
+
+<section class="section section-gray" id="subsidiaries">
+<div class="section-title animate-on-scroll">
+<h2>子公司与战略投资</h2>
+<div class="section-divider" style="margin-bottom:14px"></div>
+<p>构建全产业链生态，实现研发—设计—施工—运维一体化协同</p>
+</div>
+
+<div class="sub-section-title animate-on-scroll">
+<div class="sub-bar"></div>
+<h3>全资控股 · 研发中心</h3>
+</div>
+<div class="sub-grid">
+<div class="sub-card animate-on-scroll">
+<div class="sub-card-inner">
+<div class="sub-avatar sub-avatar-teal">泓</div>
+<div>
+<div class="sub-tag sub-tag-teal">研发中心</div>
+<h4>杭州泓衍绿能科技有限公司</h4>
+<p>聚焦新能源核心技术研发，深耕智慧能源算法与系统集成创新</p>
+</div>
+</div>
+</div>
+<div class="sub-card animate-on-scroll">
+<div class="sub-card-inner">
+<div class="sub-avatar sub-avatar-teal">鼎</div>
+<div>
+<div class="sub-tag sub-tag-teal">研发中心</div>
+<h4>杭州鼎弈合创科技有限公司</h4>
+<p>专注微电网控制技术与储能管理系统的前沿研究</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="sub-section-title animate-on-scroll">
+<div class="sub-bar" style="background:linear-gradient(to bottom,var(--emerald),var(--primary))"></div>
+<h3>参股投资 · 生态协同</h3>
+</div>
+<div class="sub-grid">
+<div class="sub-card animate-on-scroll">
+<div class="sub-card-inner">
+<div class="sub-avatar sub-avatar-emerald">中</div>
+<div>
+<div class="sub-tag sub-tag-emerald">参股投资</div>
+<h4>中鑫溢嘉建设集团有限公司浙江第一分公司</h4>
+<p>依托建设领域专业资质与施工能力，赋能新能源项目工程落地</p>
+</div>
+</div>
+</div>
+<div class="sub-card animate-on-scroll">
+<div class="sub-card-inner">
+<div class="sub-avatar sub-avatar-emerald">中</div>
+<div>
+<div class="sub-tag sub-tag-emerald">参股投资</div>
+<h4>中科嘉诚设计有限公司嘉兴分公司</h4>
+<p>提供电力工程设计咨询与勘察设计服务，保障项目设计质量</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="vision-card animate-on-scroll">
+<p class="vision-title">企 业 愿 景</p>
+<p class="vision-text">零碳电力将持续以<strong>技术创新</strong>为驱动，<br/>打通新能源发、储、用的闭环，<br/>为推动能源结构转型和助力国家实现<strong>"双碳"</strong>目标贡献力量。</p>
+</div>
+
+<section style="padding:8px 16px 4px">
+<div class="section-title" style="margin-bottom:24px">
+<h2>资质与实力</h2>
+<div class="section-divider" style="margin-bottom:0"></div>
+</div>
+</section>
+
+<div class="qual-grid animate-on-scroll">
+<div class="qual-cell">
+<div class="qual-icon teal"><svg class="svg-icon svg-icon-lg"><use href="#icon-building"></use></svg></div>
+<p class="qual-name">电力工程施工<br/>总承包</p>
+</div>
+<div class="qual-cell">
+<div class="qual-icon teal"><svg class="svg-icon svg-icon-lg"><use href="#icon-lightning"></use></svg></div>
+<p class="qual-name">承装（修、试）<br/>资质</p>
+</div>
+<div class="qual-cell">
+<div class="qual-icon emerald"><svg class="svg-icon svg-icon-lg"><use href="#icon-shield"></use></svg></div>
+<p class="qual-name">安全生产<br/>许可证</p>
+</div>
+<div class="qual-cell">
+<div class="qual-icon emerald"><svg class="svg-icon svg-icon-lg"><use href="#icon-check-circle"></use></svg></div>
+<p class="qual-name">国网超市化<br/>采购入围</p>
+</div>
+</div>
+
+<section class="cta" id="contact">
+<div class="cta-deco" style="top:36px;left:48px;width:120px;height:120px"></div>
+<div class="cta-deco" style="bottom:36px;right:48px;width:170px;height:170px"></div>
+<div class="cta-deco" style="top:50%;left:28%;width:90px;height:90px"></div>
+<div class="cta-inner">
+<h2>携手共建零碳未来</h2>
+<p>无论您是寻求分布式能源解决方案，还是希望探索智慧微电网合作，我们期待与您共同开启零碳能源新时代。</p>
+<div class="cta-btns">
+<a href="#" class="btn-white" onclick="openQrModal();return false">
+<svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+关注公众号
+</a>
+<a href="tel:+8657100000000" class="btn-ghost">
+<svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+电话咨询
+</a>
+</div>
+</div>
+</section>
+
+<section class="contact-section animate-on-scroll">
+<div class="contact-card">
+<div class="contact-row">
+<span class="contact-label"><svg class="svg-icon" style="width:14px;height:14px"><use href="#icon-location"></use></svg> 地址</span>
+<span class="contact-value">杭州市西湖区三墩镇西园七路3号西投云城犀谷1号楼9层907</span>
+</div>
+<div class="contact-row">
+<span class="contact-label"><svg class="svg-icon" style="width:14px;height:14px"><use href="#icon-wrench"></use></svg> 业务</span>
+<span class="contact-value">光伏增发 · 施工总包 · 智慧能源 · 微电网 · V2G · 储能EMS</span>
+</div>
+<div class="contact-qr">
+<img src="https://wechat-pic-lingtan.oss-cn-beijing.aliyuncs.com/weichatpic/qrcode_for_gh_e6e01f2fd1c1_258%201.png" alt="公众号二维码" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+<div style="display:none;width:140px;height:140px;margin:0 auto 10px;border-radius:8px;border:2px dashed #d0d0d0;align-items:center;justify-content:center;color:#bbb;font-size:12px">二维码加载中</div>
+<p>长按识别二维码，关注「零碳电力」公众号</p>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<p class="footer-slogan">零碳驱动 · 智慧赋能</p>
+<p class="footer-copy">浙江零碳电力技术有限公司 © 2021-2026</p>
+</footer>
+
+<div class="qr-modal" id="qrModal" onclick="if(event.target===this)closeQrModal()">
+<div class="qr-modal-content">
+<button class="qr-modal-close" onclick="closeQrModal()">&times;</button>
+<p class="qr-modal-title" id="qrTitle">扫码关注公众号</p>
+<p class="qr-modal-subtitle" id="qrSubtitle">长按识别二维码，联系专属顾问</p>
+<img class="qr-modal-img" src="https://wechat-pic-lingtan.oss-cn-beijing.aliyuncs.com/weichatpic/qrcode_for_gh_e6e01f2fd1c1_258%201.png" alt="微信公众号二维码" onerror="this.style.display='none'" />
+<p class="qr-modal-tip">微信扫一扫，关注企业公众号</p>
+<p class="qr-modal-tip-bold">专属顾问将在1个工作日内联系您</p>
+</div>
+</div>
+
+<script>
+function switchCat(i){
+document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active')});
+document.querySelectorAll('.cat-panel').forEach(function(p){p.classList.remove('active')});
+document.querySelectorAll('.cat-btn')[i].classList.add('active');
+document.querySelectorAll('.cat-panel')[i].classList.add('active');
+}
+function smoothScroll(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'})}
+function openQrModal(){document.getElementById('qrModal').classList.add('show')}
+function closeQrModal(){document.getElementById('qrModal').classList.remove('show')}
+</script>
+
+<script>
+(function(){
+var c=document.getElementById('heroCanvas');if(!c)return;
+var ctx=c.getContext('2d'),particles=[],w,h,dpr=window.devicePixelRatio||1;
+function resize(){w=c.clientWidth;h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr)}
+function P(){this.x=Math.random()*w;this.y=Math.random()*h;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.r=Math.random()*1.5+.5;this.o=Math.random()*.5+.1}
+P.prototype.update=function(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>w)this.vx*=-1;if(this.y<0||this.y>h)this.vy*=-1};
+P.prototype.draw=function(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle='rgba(165,243,252,'+this.o+')';ctx.fill()};
+function init(){resize();particles=[];for(var i=0,n=Math.min(Math.floor(w*h/8000),70);i<n;i++)particles.push(new P)}
+function anim(){ctx.clearRect(0,0,w,h);for(var i=0;i<particles.length;i++){particles[i].update();particles[i].draw();for(var j=i+1;j<particles.length;j++){var dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<110){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle='rgba(13,148,136,'+(.1*(1-d/110))+')';ctx.lineWidth=.5;ctx.stroke()}}}requestAnimationFrame(anim)}
+init();anim();
+window.addEventListener('resize',init);
+})();
+</script>
+
+<script>
+(function(){
+var els=document.querySelectorAll('.animate-on-scroll');
+var obs=new IntersectionObserver(function(entries){
+entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+},{threshold:.12});
+els.forEach(function(e){obs.observe(e)});
+})();
+</script>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+a.addEventListener('click',function(e){
+var t=document.querySelector(this.getAttribute('href'));
+if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+});
+});
+</script>
+</body>
+</html>
